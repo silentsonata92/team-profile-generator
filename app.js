@@ -8,7 +8,6 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-
 let team = []
 
 const manager = [
@@ -31,7 +30,7 @@ const manager = [
     type: 'input',
     name: 'managerOffice',
     message: 'Input Manager Office number:'
-  }
+  },
 ]
 
 const engineer = [
@@ -42,44 +41,51 @@ const engineer = [
   },
   {
     type: 'input',
-    name: 'enginnerId',
+    name: 'engineerId',
     message: 'Input Engineer ID:'
   },
   {
     type: 'input',
-    name: 'enginnerEmail',
+    name: 'engineerEmail',
     message: 'Input Engineer Email:'
   },
   {
     type: 'input',
     name: 'engineerGitHub',
     message: 'Input Engineer Git Hub Username:'
-  }
+  },
 ]
 
 const intern = [
   {
     type: 'input',
     name: 'internName',
-    message: 'Input Enginner Name:',
+    message: 'Input Intern Name:',
   },
   {
     type: 'input',
-    name: 'InternId',
+    name: 'internId',
     message: 'Input Intern ID:'
   },
   {
     type: 'input',
-    name: 'managerEmail',
+    name: 'internEmail',
     message: 'Input Intern Email:'
   },
   {
     type: 'input',
-    name: 'InternSchool',
+    name: 'internSchool',
     message: 'Input Intern School Name:'
-  }
+  },
 ]
  
+inquirer
+  .prompt(manager)
+  .then (ans=>{
+    team.push(new Manager(ans.managerName, ans.managerId, ans.managerEmail, ans.managerOffice))
+    chooseTeam()
+  })
+
 const chooseTeam = () =>{
   inquirer
   .prompt([{
@@ -104,14 +110,6 @@ const chooseTeam = () =>{
     })
 }
 
-inquirer
-  .prompt(manager)
-  .then (ans=>{
-    team.push(new Manager(ans.managerName, ans.managerId, ans.managerEmail, ans.managerOffice))
-    chooseTeam()
-  })
-
-  
   const chooseEngineer = () =>{
     inquirer
     .prompt(engineer)
